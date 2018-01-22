@@ -1,0 +1,39 @@
+<!-- views/pages/genre_detail.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1>Gênero: <%= genre.name %></h1>   
+          <p>
+            <a href="<%= genre.url %>/delete"><strong>Excluir</strong></a>&nbsp;&nbsp;&nbsp;
+            <a href="<%= genre.url %>/update"><strong>Modificar</strong></a>
+          </p>
+					<div sytle='margin-left:20px; margin-top:20px'>
+            <h4>Livros: </h4>
+            <dl>
+              <% if (genre_books.length) { %>
+                <% for (var i in genre_books) { %>
+                  <hr>				
+                  <dt>
+                    <a href='<%= genre_books[i].url %>'><%- genre_books[i].title %></a>
+                    <dd><%- genre_books[i].summary %></dd>
+                  </dt>
+                <% } %>
+              <% } else { %> 
+                 <dt> Não há livros cadastrados com o gênero. </dt>  
+              <% } %>
+            </dl>
+          </div>					
+				</div>
+			</div>
+		</div>
+	</body>
+</html>    

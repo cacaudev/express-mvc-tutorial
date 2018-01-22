@@ -1,0 +1,31 @@
+<!-- views/pages/book_list.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1><%= title %></h1>
+          <ul>
+          <% if (book_list.length) { %>
+            <% book_list.forEach(function(book) { %>				
+						  <li>
+								<a href='<%= book.url %>'><%- book.title %></a> 
+								(<%- book.author.name %>) 
+							</li>
+            <% }); %>
+          <% } else { %> 
+            <li> Não há livros cadastrados. </li>  
+          <% } %>
+          </ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>    

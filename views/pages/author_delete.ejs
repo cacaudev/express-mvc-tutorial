@@ -1,0 +1,48 @@
+<!-- views/pages/author_delete.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1><%= title %>: <%= author.name %></h1>   
+          <p><%= author.lifespan %></p>
+
+          <% if (author_books.length) { %>				
+            <p>
+              <strong>
+                Exclua os seguintes livros antes de tentar excluir este(a) autor(a)
+              </strong>
+            </p>
+            <div style="margin-left:20px; margin-top:20px;">
+              <h4>Livros</h4>
+              <dl>
+                <% author_books.forEach(function(book) { %>	
+                  <dt><a href="<%= book.url %>"><%- book.title %></a></dt>
+                  <dd><%- book.summary %></dd>
+                  <br>
+                <% }); %> 
+              </dl>
+            </div>
+            
+          <% } else { %>
+            <p>Deseja realmente excluir este(a) autor(a)?</p>
+            <form method="POST" action="">
+                <div class="form-group">
+                  <input id="authorid" class="form-control" type="hidden"
+                    name="authorid" required="true" value="<%= author._id %>">
+                </div>
+                <button class="btn btn-primary" type="submit">Excluir</button>  
+            </form>
+          <% } %> 
+        </div>        			
+			</div>
+		</div>
+  </body>
+</html>    

@@ -1,0 +1,60 @@
+<!-- views/pages/book_delete.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1><%= title %>: <%- book.title %></h1>            
+          <% if (instance_books.length) { %>				
+            <p>
+              <strong>
+                Exclua os seguintes exemplares antes de tentar excluir este livro:
+              </strong>
+            </p>
+            <div style="margin-left:20px; margin-top:20px;">
+              <h4>Exemplares: </h4>
+              <dl>
+                <% instance_books.forEach(function(instance) { %>	
+                  <hr>
+                  <dt><strong>ID: </strong><a href="<%= instance.url %>"><%- instance._id %></a></dt>
+                  <dd><strong>Editora e Publicação: </strong> <%- instance.imprint %></dd>
+                  <p><strong>Status: </strong>
+                    <% if(instance.status == 'Available') { %>
+                      <mark class="sucess">Disponível</mark>
+                    <% } else if(instance.status == 'Maintenance') { %>
+                     <mark class="danger">Manutenção</mark>
+                    <% } else { %>
+                      <mark class="warning">Emprestado</mark>
+                    <% } %>
+                  </p>
+                  <% if(instance.status != 'Available') { %>                    
+                    <p>
+                      <strong>Data de entrega: </strong>  
+                        <%= instance.due_back_formatted %>
+                    </p>
+                  <% } %>                  
+                <% }); %> 
+              </dl>
+            </div>            
+          <% } else { %>
+            <p>Deseja realmente excluir este livro?</p>
+            <form method="POST" action="">
+                <div class="form-group">
+                  <input id="bookid" class="form-control" type="hidden"
+                    name="bookid" required="true" value="<%= book._id %>">
+                </div>
+                <button class="btn btn-primary" type="submit">Excluir</button>  
+            </form>
+          <% } %> 
+        </div>        			
+			</div>
+		</div>
+  </body>
+</html>   

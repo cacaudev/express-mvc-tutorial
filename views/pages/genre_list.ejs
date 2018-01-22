@@ -1,0 +1,30 @@
+<!-- views/pages/genre_list.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1><%= title %></h1>
+          <ul>
+          <% if (genre_list.length) { %>
+            <% for (var i in genre_list) { %>				
+							<li>
+								<a href='<%= genre_list[i].url %>'><%= genre_list[i].name %></a>
+              </li>
+            <% } %>
+          <% } else { %> 
+            <li> Não há gêneros. </li>  
+          <% } %>
+          </ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>    

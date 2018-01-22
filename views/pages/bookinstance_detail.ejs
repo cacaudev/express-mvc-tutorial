@@ -1,0 +1,44 @@
+<!-- views/pages/bookinstance_detail.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1>ID: <%- bookinstance._id %></h1>
+          <p>
+            <strong>Título: </strong>
+            <a href="<%= bookinstance.book.url %>">
+              <%- bookinstance.book.title %>
+            </a>
+          </p>
+          <p><strong>Editora e ano de publicação: </strong><%- bookinstance.imprint %></p>
+          <p><strong>Status: </strong>
+            <% if(bookinstance.status == 'Available') { %>
+              <mark class="sucess">Disponível</mark>
+            <% } else if(bookinstance.status == 'Maintenance') { %>
+              <mark class="danger">Manutenção</mark>
+            <% } else { %>
+              <mark class="warning">Emprestado</mark>
+            <% } if(bookinstance.status != 'Available') { %>
+              <p>
+                <strong>Data de entrega: </strong>  
+                <%= bookinstance.due_back_formatted %>
+              </p>
+            <% } %>
+          </p>  
+          <p>
+            <a href="<%= bookinstance.url %>/delete"><strong>Excluir</strong></a>&nbsp;&nbsp;&nbsp;
+            <a href="<%= bookinstance.url %>/update"><strong>Modificar</strong></a>
+          </p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>    

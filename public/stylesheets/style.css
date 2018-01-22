@@ -1,0 +1,42 @@
+body {
+  background-color: #99ccff;
+}
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+h1 {
+  color: black;
+}
+h5 {
+  color: black;
+}
+h4 {
+  color: black;
+}
+p {
+  color: black;
+}
+a {
+  color: #2d2db9;
+}
+li {
+  color: black;
+}
+mark {
+  background-color: green;
+  color: black;
+}
+.sucess {
+  background-color: green;
+  color: white;
+}
+.warning {
+  background-color: #996600;
+  color: white;
+}
+.danger {
+  background-color: red;
+  color: white;
+}

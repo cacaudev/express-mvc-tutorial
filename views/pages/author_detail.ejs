@@ -1,0 +1,44 @@
+<!-- views/pages/author_detail.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1>Autor(a): <%= author.name %></h1>
+          <p>
+            (<%= author.date_of_birth_formatted %>) - 
+            (<%= author.date_of_death_formatted %>)
+          </p>   
+          <p>
+            <a href="<%= author.url %>/delete"><strong>Excluir</strong></a>&nbsp;&nbsp;&nbsp;
+            <a href="<%= author.url %>/update"><strong>Modificar</strong></a>
+          </p>
+          <div sytle='margin-left:20px; margin-top:20px'>
+            <h4>Livros: </h4>
+            <dl>
+              <% if (author_books.length) { 
+                  author_books.forEach(function(book) { %>
+                    <hr>				
+                    <dt>
+                      <a href='<%= book.url %>'><%- book.title %></a>
+                      <dd><%- book.summary %></dd>
+                    </dt>
+                  <% }) 
+              } else { %> 
+                 <dt> Não há livros cadastrados deste(a) autor(a). </dt>  
+              <% } %>
+            </dl>
+          </div>   
+          
+				</div>
+			</div>
+		</div>
+	</body>
+</html>    

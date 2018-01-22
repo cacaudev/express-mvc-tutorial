@@ -1,0 +1,29 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+					<h1><%= title %></h1>   
+					<p>Bem-vindos a <em> Biblioteca Corujinha</em>, um site básico desenvolvido com Express para servir de tutorial.</p>
+					<h1>Conteúdo Dinâmico</h1>
+					<p>A biblioteca tem os seguintes registros:</p>
+					<ul>
+						<li><strong>Livros: </strong><%= data.book_count %></li>
+						<li><strong>Exemplares: </strong><%= data.book_instance_count %> </li>
+						<li><strong>Exemplares disponíveis: </strong><%= data.book_instance_available_count %></li>
+						<li><strong>Autores: </strong><%= data.author_count %></li>
+						<li><strong>Gêneros: </strong><%= data.genre_count %></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>    

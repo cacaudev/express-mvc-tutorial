@@ -1,0 +1,99 @@
+<!-- views/pages/bookinstance_form.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1><%= title %></h1>
+
+          <form method="POST" action="">
+
+            <div class="form-group" style="margin-right:60%;">
+              <label for="book"> Livro: </label>
+              <select id="book" class="form-control" type="select" 
+                placeholder="Selecione o livro" required="true"
+                name="book">
+                <% book_list.forEach(function(book) { 
+                  if(bookinstance) { %>
+                    <option value="<%= book._id %>" 
+                      <%- book._id.toString()==bookinstance.book._id
+                      ? 'selected' : false %> >
+                      <%- book.title %>
+                    </option>
+                  <% } else { %>
+                    <option value="<%= book._id %>">
+                      <%- book.title %> 
+                    </option>
+                  <% }
+                }); %>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-right:60%;">
+              <label for="imprint">Editora e ano de publicação: </label>
+              <input id="imprint" class="form-control" type="text" 
+                placeholder='Editora,Ano' name='imprint' required='true' 
+                value="<%- undefined===bookinstance ? '' : bookinstance.imprint %>">
+            </div>
+
+            <div class="form-group" style="margin-right:60%;">
+              <label for="due_back"> Data de disponibilidade: </label>
+              <input id="due_back" class="form-control" type="date" 
+                name='due_back'
+                value="<%- undefined===bookinstance ? '' : bookinstance.due_back_yyyy_mm_dd %>">
+            </div>
+
+            <div class="form-group" style="margin-right:60%;">
+              <label for="status"> Status: </label>
+              <select class="form-control" type="select" 
+                placeholder="Selecione o status" name="status"
+                required="true">
+                <option value="Maintenance"
+                  <%- ((undefined==bookinstance) || 
+                    (bookinstance.status != 'Maintenance'))
+                     ? false : 'selected' %>>
+                    Manutenção</option>
+                <option value="Available"
+                  <%- ((undefined==bookinstance) || 
+                    (bookinstance.status != 'Available'))
+                    ? false : 'selected' %>>
+                    Disponível</option>
+                <option value="Loaned"
+                  <%- ((undefined==bookinstance) || 
+                    (bookinstance.status != 'Loaned'))
+                    ? false : 'selected' %>>
+                    Emprestado</option>
+                <option value="Reserved"
+                  <%- ((undefined==bookinstance) || 
+                    (bookinstance.status != 'Reserved'))
+                    ? false : 'selected' %>>
+                    Reservado</option>
+              </select>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Cadastrar</button>  
+          </form>
+          <br> 
+          
+          <% if(errors.length) { %>  
+            <ul>   
+            <% for (var i in errors) { %>			
+              <li>
+                <%= errors[i].msg %>
+              </li>           
+            <% } %>
+            </ul>   
+          <% } %>		
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>    

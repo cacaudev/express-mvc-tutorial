@@ -1,0 +1,72 @@
+<!-- views/pages/genre_detail.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title>Livro: <%= book.title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1><%- book.title %></h1> 
+          <hr>  
+          <p>
+            <strong>Autor(a): </strong>
+            <a href="<%= book.author.url %>"><%= book.author.name %></a>
+          </p>
+          <p><strong>Sinopse : </strong><%= book.summary %></p>
+          <p><strong>ISBN : </strong><%= book.isbn %></p>
+          <p><strong>Gênero(s) : </strong>
+            <% if (book.genre.length) { %>				
+              <% book.genre.forEach (function(genre, index) { %>	
+              	<a href='<%= genre.url %>'><%- genre.name %></a>
+                <% if (index < book.genre.length - 1) { %> , <% } %>
+              <% }); 
+            } else { %>
+              <p>Não há gêneros cadastrados deste livro. </p>
+            <% } %>
+          </p>
+          
+          <p>
+            <a href="<%= book.url %>/delete"><strong>Excluir</strong></a>&nbsp;&nbsp;&nbsp;
+            <a href="<%= book.url %>/update"><strong>Modificar</strong></a>
+          </p>       
+          <hr>
+          <div style="margin-left:20px; margin-top:20px;">
+            <h4><strong>Exemplares: </strong></h4>
+            <% if (book_instances.length) { %>
+              <% for (var i in book_instances) { %>	
+                <hr>			
+                <% if(book_instances[i].status == 'Available') { %>
+                    <p><mark class="sucess">Disponível</mark></p>
+                  <% } else if(book_instances[i].status == 'Maintenance') { %>
+                    <p><mark class="danger"> Manutenção</mark></p>
+                  <% } else { %>
+                    <p><mark class="warning"> Emprestado</mark></p>
+                  <% } %>
+                  <p><strong>Editora e data de publicação: </strong><%= book_instances[i].imprint %></p>
+                  <% if(book_instances[i].status != 'Available') { %>
+                    <p>
+                      <strong>Data de entrega: </strong>
+                      <%= book_instances[i].due_back_formatted %>
+                    </p>
+                  <% } %>
+                  <p><strong>Id: </strong>
+                    <a href="<%= book_instances[i].url %>">
+                      <%= book_instances[i]._id %>
+                    </a>
+                  </p>  
+              <% } %>
+            <% } else { %> 
+              <li>Não há exemplares deste livro na biblioteca. </li>  
+            <% } %>
+          </div> 
+          
+				</div>
+			</div>
+		</div>
+	</body>
+</html>    

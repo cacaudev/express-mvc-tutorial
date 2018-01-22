@@ -1,0 +1,47 @@
+<!-- views/pages/genre_delete.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1><%= title %>: <%= genre.name %></h1>   
+          
+          <% if (genre_books.length) { %>				
+            <p>
+              <strong>
+                Exclua os seguintes livros antes de tentar excluir este gênero:
+              </strong>
+            </p>
+            <div style="margin-left:20px; margin-top:20px;">
+              <h4>Livros</h4>
+              <dl>
+                <% genre_books.forEach(function(book) { %>	
+                  <dt><a href="<%= book.url %>"><%- book.title %></a></dt>
+                  <dd><%- book.summary %></dd>
+                  <br>
+                <% }); %> 
+              </dl>
+            </div>
+            
+          <% } else { %>
+            <p>Deseja realmente excluir este gênero?</p>
+            <form method="POST" action="">
+                <div class="form-group">
+                  <input id="genreid" class="form-control" type="hidden"
+                    name="genreid" required="true" value="<%= genre._id %>">
+                </div>
+                <button class="btn btn-primary" type="submit">Excluir</button>  
+            </form>
+          <% } %> 
+        </div>        			
+			</div>
+		</div>
+  </body>
+</html>   

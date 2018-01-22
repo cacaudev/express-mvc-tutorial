@@ -1,0 +1,56 @@
+<!-- views/pages/author_form.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+		<title><%= title %></title> 
+		<% include ../partials/head %>
+  </head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<% include ../partials/sidebar %>
+				<div class="col-sm-10">
+          <h1><%= title %></h1>
+
+          <form method="POST" action="">
+            <div class="form-group" style="margin-right:60%;">
+              <label for="first_name"> Primeiro nome: </label>
+              <input id="first_name" class="form-control" placeholder="First name (Christian)"  
+                name="first_name" type="text" required="true"
+                value="<%- undefined===author ? '' : author.first_name %>">
+              <br>
+              <label for="family_name"> Segundo nome: </label>
+              <input id="family_name"class="form-control" placeholder="Family name (surname)"  
+                name="family_name" type="text" required="true"
+                value="<%- undefined===author ? '' : author.family_name %>">
+            </div>
+            <div class="form-group" style="margin-right:60%;">
+              <label for="date_of_birth"> Data de nascimento: </label>
+              <input id="date_of_birth" class="form-control" 
+                name="date_of_birth" type="date"
+                value="<%- undefined===author ? '' : author.date_of_birth_yyyy_mm_dd %>">
+              <br>
+              <label for="date_of_death"> Data de falecimento: </label>
+              <input id="date_of_death" class="form-control"
+                name="date_of_death" type="date"
+                value="<%- undefined===author ? '' : author.date_of_death_yyyy_mm_dd %>">
+            </div>
+            <button class="btn btn-primary" type="submit">Cadastrar</button>  
+          </form>
+          <br> 
+          
+          <% if(errors.length) { %>  
+            <ul>   
+            <% for (var i in errors) { %>			
+              <li>
+                <%= errors[i].msg %>
+              </li>           
+            <% } %>
+            </ul>   
+          <% } %>		
+				</div>
+			</div>
+		</div>
+	</body>
+</html>    
