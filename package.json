@@ -1,7 +1,10 @@
 {
-  "name": "nodewebapp",
+  "name": "express-mvc-tutorial",
   "version": "0.0.0",
-  "private": true,
+  "engines": {
+    "node": "6.10.3"
+  },
+  "private": true,  
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www"

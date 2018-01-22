@@ -22,7 +22,7 @@ app.use(helmet());
 
 //Set up default mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://127.0.0.1/nodeApi';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://127.0.0.1/nodeApi';
 mongoose.connect(mongoDB, {
   useMongoClient: true
 });
