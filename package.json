@@ -2,7 +2,8 @@
   "name": "express-mvc-tutorial",
   "version": "0.0.0",
   "engines": {
-    "node": "6.10.3"
+    "node": "6.10.3",
+    "npm": "3.10.10"
   },
   "private": true,  
   "scripts": {
