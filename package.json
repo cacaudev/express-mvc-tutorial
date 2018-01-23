@@ -1,6 +1,7 @@
 {
   "name": "express-mvc-tutorial",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "This is an example of mvc app structure.",
   "engines": {
     "node": "6.10.3",
     "npm": "3.10.10"
@@ -27,5 +28,11 @@
   },
   "devDependencies": {
     "nodemon": "^1.14.9"
-  }
+  },
+  "keywords": [
+    "example",
+    "tutorial",
+    "heroku"
+  ],
+  "author": "cacaudev"
 }
