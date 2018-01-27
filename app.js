@@ -22,7 +22,7 @@ app.use(helmet());
 
 //Set up default mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = process.env.MONGODB_URI || 'mongodb://root:root@ds123400.mlab.com:23400/libraryapptest';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://user:passwd@ds123400.mlab.com:23400/libraryapptest';
 mongoose.connect(mongoDB, {
   useMongoClient: true
 });
